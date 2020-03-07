@@ -1,15 +1,33 @@
-
 {% extends 'category/base.html' %}
 {% load static %}
 
 {% block content %}
-    <h1>Home Page</h1>
+<h1 class="text-info text-center my-2">Home Page</h1>
+<div class="container">
     <a href="{% url 'cat-create' %}" class="btn btn-primary btn-sm">Create</a>
-    <img src="{% static 'category/images/coder.jpeg' %}" alt="">
-    {% for cat in cats %}
+    <table class="table table-bordered">
+        <thead>
+            <tr class="text-white bg-dark">
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Since</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cat in cats %}
+            <tr>
+                <td>{{cat.id}}</td>
+                <td>{{cat.name}}</td>
+                <td>{{cat.created_at}}</td>
+                <td>
+                    <a href="{% url 'cat-edit' cat.id %}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="{% url 'cat-delete' cat.id %}"  class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+            {%endfor %}
+        </tbody>
+    </table>
 
-        <p>{{cat.name}}</p>
-        
-    {% endfor %}
-
+</div>
 {% endblock %}

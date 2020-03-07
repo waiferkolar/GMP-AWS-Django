@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cat/',cat_view.home,name="cat-home"),
     path('cat/create',cat_view.create,name="cat-create"),
+    path('cat/edit/<int:id>',cat_view.edit,name="cat-edit"),
+    path('cat/delete/<int:id>',cat_view.delete,name="cat-delete"),
     path('cat/about',cat_view.about,name="cat-about"),
     path('',include('product.urls'))
 ]

@@ -16,5 +16,21 @@ def create(request):
         form = CategoryForm()
     return render(request,"category/create.html",{"form":form})
 
+def edit(request,id):
+    instance = Category.objects.get(id=id)
+    if request.method == "POST":
+        form = CategoryForm(request.POST,instance=instance)
+        if form.is_valid():
+            form.save() 
+            return redirect("/cat/")
+    else :
+        form = CategoryForm(instance=instance)
+
+    return render(request,"category/edit.html",{"form":form})
+
 def about(request):
     return render(request,"category/about.html")
+
+def delete(request,id):
+    Category.objects.get(id=id).delete()
+    return redirect("/cat/")
