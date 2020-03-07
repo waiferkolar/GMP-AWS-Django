@@ -1,0 +1,15 @@
+
+{% extends 'category/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Home Page</h1>
+    <a href="{% url 'cat-create' %}" class="btn btn-primary btn-sm">Create</a>
+    <img src="{% static 'category/images/coder.jpeg' %}" alt="">
+    {% for cat in cats %}
+
+        <p>{{cat.name}}</p>
+        
+    {% endfor %}
+
+{% endblock %}
